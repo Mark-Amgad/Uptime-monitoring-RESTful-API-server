@@ -1,0 +1,24 @@
+{
+  "name": "uptime-monitoring-restful-api-server",
+  "version": "1.0.0",
+  "description": "Bosta | Backend | Assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mark-Amgad/Uptime-monitoring-RESTful-API-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mark-Amgad/Uptime-monitoring-RESTful-API-server/issues"
+  },
+  "homepage": "https://github.com/Mark-Amgad/Uptime-monitoring-RESTful-API-server#readme",
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
