@@ -34,6 +34,8 @@ app.get("/checks/:email",checkController.getByEmail);
 app.put("/checks/update",checkController.update);
 app.delete("/checks/delete/:check_id",checkController.delete);
 
+const reportController = require("./controller/Report");
+app.post("/reports/add",reportController.addReport);
 
 
 

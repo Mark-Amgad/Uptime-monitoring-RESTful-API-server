@@ -8,7 +8,7 @@ let checkController = {};
 checkController.add = async(req,res)=>{
     try
     {
-        let {email,urlName,url,protocol,ignoreSSLFlag} = req.body;
+        let {email,urlName,url,method,protocol,ignoreSSLFlag} = req.body;
         let user = await UserModel.findOne({email:email},{_id:1});
         let userId = user._id;
         let newCheck = new CheckModel({
@@ -16,6 +16,7 @@ checkController.add = async(req,res)=>{
             url_name:urlName,
             url:url,
             protocol:protocol,
+            method:method,
             ignoreSSL_flag:ignoreSSLFlag,
             user_email:email
         });
@@ -23,8 +24,8 @@ checkController.add = async(req,res)=>{
         // add this check to the poll
         const poll = require("./../poll");
         const requestDetails = {
-            url: newCheck.url,
-            method: 'GET',
+            url: newCheck.protocol + "://"+newCheck.url,
+            method: newCheck.method,
           };
         poll.pollRequest(requestDetails,newCheck,-1);
         return res.status(200).json({"message":"URL check added successfully","URL check":newCheck});

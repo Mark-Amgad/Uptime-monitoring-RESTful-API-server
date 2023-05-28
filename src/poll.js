@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { performance } = require('perf_hooks');
 const notifications = require("./utils/notifications");
+const logController = require("./controller/Log");
 
 
 let poll = {};
@@ -31,7 +32,7 @@ poll.pollRequest = (requestDetails,checkDetails,prevState)=> {
                 userId:checkDetails.user_id,
                 url:checkDetails.url,
                 status:status,
-                responseTime:responseTime,
+                responseTime:responseTime.toFixed(2),
                 isUp:true
             };
             logController.addLog(logDate)
@@ -42,9 +43,11 @@ poll.pollRequest = (requestDetails,checkDetails,prevState)=> {
             if(prevState !== 0)
             {
                 // send Notification
+                let emailSubject = "your URL '" + checkDetails.url_name + "' state is Down";
+                let htmlContent = "<h3> your URL : " +checkDetails.url +" is Down</h3>";
+                notifications.sendEmail(checkDetails.user_email,emailSubject,htmlContent);
             }
-            console.error('Error:', error.message);
-            const logController = require("./controller/Log");
+            console.error(checkDetails.url + " is down");
             const logDate = {
                 checkId:checkDetails._id,
                 userId:checkDetails.user_id,
@@ -63,8 +66,8 @@ poll.manager = async ()=>{
     let allChecks = await poll.getAllChecks();
     allChecks.forEach((check)=>{
         const requestDetails = {
-            url: check.url,
-            method: 'GET',
+            url: check.protocol + "://"+check.url,
+            method: check.method,
           };
 
         poll.pollRequest(requestDetails,check,-1);
