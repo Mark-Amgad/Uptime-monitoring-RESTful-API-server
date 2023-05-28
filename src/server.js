@@ -81,4 +81,6 @@ pollRequest(requestDetails);
 */
 
 const poll = require("./poll");
-poll.manager();
+//poll.manager();
+
+module.exports = app;
