@@ -2,7 +2,8 @@ let helper = {};
 
 helper.encrypt = (text)=>{
     const bcrypt = require("bcrypt");
-    const salt = bcrypt.genSaltSync(10);
+    const saltRound = Number(process.env.SALT_ROUND || 10);
+    const salt = bcrypt.genSaltSync(saltRound);
     const hash = bcrypt.hashSync(text, salt);
     return hash;
 } 
@@ -11,7 +12,8 @@ helper.encrypt = (text)=>{
 helper.generateJwt = (payloadData)=>{
     // payloadData must be an object
     const jwt = require("jsonwebtoken");
-    const token = jwt.sign(payloadData,"KEY");
+    const key = process.env.JWT_KEY || "KEY";
+    const token = jwt.sign(payloadData,key);
     return token;
 }
 

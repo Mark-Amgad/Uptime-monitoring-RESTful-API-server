@@ -12,8 +12,8 @@ notifications.sendEmail = async(email , subject , htmlContent)=>{
             port: 465,
             secure: true, // true for 465, false for other ports
             auth: {
-              user: "markamgad099@gmail.com",
-              pass: "kuicgeuzlsactucn"
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASS
             },
           });
         let info = await transporter.sendMail({

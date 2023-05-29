@@ -19,12 +19,15 @@ poll.pollRequest = (requestDetails,checkDetails,prevState)=> {
             }
             const { status, statusText, headers } = response;
             const responseTime = performance.now() - startTime;
-
-            console.log("Url : " + checkDetails.url)
-            console.log('Response Status:', status);
-            console.log('Response Status:', statusText);
-            console.log('Response Time:', responseTime.toFixed(2), 'ms');
-            //console.log('Headers:', headers);
+            if(process.env.NODE_ENV !== "testing")
+            {
+                console.log("Url : " + checkDetails.url)
+                console.log('Response Status:', status);
+                console.log('Response Status:', statusText);
+                console.log('Response Time:', responseTime.toFixed(2), 'ms');
+                //console.log('Headers:', headers);
+            }
+            
             //store the log
             const logController = require("./controller/Log");
             const logDate = {
@@ -47,7 +50,10 @@ poll.pollRequest = (requestDetails,checkDetails,prevState)=> {
                 let htmlContent = "<h3> your URL : " +checkDetails.url +" is Down</h3>";
                 notifications.sendEmail(checkDetails.user_email,emailSubject,htmlContent);
             }
-            console.error(checkDetails.url + " is down");
+            if(process.env.NODE_ENV !== "testing")
+            {
+                console.error(checkDetails.url + " is down");
+            }
             const logDate = {
                 checkId:checkDetails._id,
                 userId:checkDetails.user_id,

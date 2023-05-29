@@ -28,12 +28,12 @@ checkController.add = async(req,res)=>{
             method: newCheck.method,
           };
         poll.pollRequest(requestDetails,newCheck,-1);
-        return res.status(200).json({"message":"URL check added successfully","URL check":newCheck});
+        return res.status(200).json({"message":"URL check added successfully","URLCheck":newCheck});
 
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
         return res.status(404).json({"message":"Error"});
     }
 }
@@ -57,7 +57,7 @@ checkController.update = async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
         return res.status(404).json({"message":"Error"});
     }
 }
@@ -76,7 +76,7 @@ checkController.delete = async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
         return res.status(404).json({"message":"Error"});
     }
 }
@@ -93,8 +93,8 @@ checkController.getByEmail = async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
-        return res.status(404).json({"message":"Error"});
+        //console.log(err);
+        return res.status(404).json({"message":"Wrong email"});
     }
 }
 
@@ -107,7 +107,7 @@ checkController.getAll = async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
         return res.status(404).json({"message":"Error"});
     }
 }

@@ -25,6 +25,10 @@ const reportSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  created_at: {
+    type: Date,
+    default: Date.now
+  },
   outages: {
     type: Number,
     required: true

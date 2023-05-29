@@ -38,7 +38,7 @@ userController.addUser = async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
         return res.status(404).json({"message":"Error"});
     }
 }
@@ -91,7 +91,25 @@ userController.login = async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
+        return res.status(404).json({"message":"Error"});
+    }
+}
+
+userController.remove = async(req,res)=>{
+    try
+    {
+        let email = req.params.email;
+        let result = await UserModel.deleteOne({email:email});
+        if(result.deletedCount != 1)
+        {
+            return res.status(404).json({"message":"This email is not exist"});
+        }
+        return res.status(200).json({"message":"Account Deleted"});
+    }
+    catch(err)
+    {
+        //console.log(err);
         return res.status(404).json({"message":"Error"});
     }
 }

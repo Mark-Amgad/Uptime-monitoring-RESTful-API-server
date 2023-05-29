@@ -82,4 +82,29 @@ reportController.createReport = async(checkId) =>{
     
 }
 
+reportController.getReportsByCheckId = async(req,res)=>{
+    try
+    {
+        let checkId = req.params.check_id;
+        let reports = await ReportModel.find({check_id:checkId});
+        res.status(200).json({"reports":reports});
+    }
+    catch(err)
+    {
+        res.status(404).json({"message":"Wrong checkId"});
+    }
+}
+
+reportController.getAll = async(req,res)=>{
+    try
+    {
+        let reports = await ReportModel.find();
+        res.status(200).json({"reports":reports});
+    }
+    catch(err)
+    {
+        res.status(404).json({"message":"Wrong"});
+    }
+}
+
 module.exports = reportController;

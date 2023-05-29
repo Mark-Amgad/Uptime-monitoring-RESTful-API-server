@@ -5,14 +5,20 @@ const port = 4040; // must be fetched from env variables later
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+require('dotenv').config();
 
 app.listen(port,async()=>{
     try
     {
-        await mongoose.connect("mongodb+srv://mark:1234@mycluster.s9dhhpp.mongodb.net/Bosta?retryWrites=true&w=majority");
-        console.log("The server is running on port " + port);
-        console.log("Database has connected successfully");
+        const mongoAddress = process.env.MONGODB;
+        await mongoose.connect(mongoAddress);
+        //console.log(process.env.NODE_ENV);
+        if(process.env.NODE_ENV !== "testing")
+        {
+            console.log("The server is running on port " + port);
+            console.log("Database has connected successfully");
+        }
+        
     }
     catch(err)
     {
@@ -21,23 +27,34 @@ app.listen(port,async()=>{
     }
 });
 
+const auth = require("./middlewares/Auth");
+const userRoute = require("./routes/UserRoutes");
+const checkRoute = require("./routes/CheckRoutes");
+const reportRoute = require("./routes/ReportRoutes");
+
+app.use(checkRoute);
+app.use(userRoute);
+app.use(reportRoute);
+/*
 const userController = require("./controller/User");
 app.post("/users/signup",userController.addUser);
 app.get("/users/verify/:email/:code",userController.verify);
 app.post("/users/login",userController.login);
-
+app.delete("/users/delete/:email",userController.remove);
 
 const checkController = require("./controller/check");
-app.post("/checks/add",checkController.add);
-app.get("/checks/",checkController.getAll);
-app.get("/checks/:email",checkController.getByEmail);
-app.put("/checks/update",checkController.update);
-app.delete("/checks/delete/:check_id",checkController.delete);
+app.post("/checks/add",auth.authenticateUser,checkController.add);
+app.get("/checks/",auth.authenticateUser,checkController.getAll);
+app.get("/checks/:email",auth.authenticateUser,checkController.getByEmail);
+app.put("/checks/update",auth.authenticateUser,checkController.update);
+app.delete("/checks/delete/:check_id",auth.authenticateUser,checkController.delete);
 
 const reportController = require("./controller/Report");
-app.post("/reports/add",reportController.addReport);
+app.post("/reports/add",auth.authenticateUser,reportController.addReport);
+app.get("/reports/:check_id",auth.authenticateUser,reportController.getReportsByCheckId);
+app.get("/reports/",auth.authenticateUser,reportController.getAll);
 
-
+*/
 
 /*
 const axios = require('axios');
@@ -81,6 +98,6 @@ pollRequest(requestDetails);
 */
 
 const poll = require("./poll");
-//poll.manager();
+poll.manager();
 
 module.exports = app;
