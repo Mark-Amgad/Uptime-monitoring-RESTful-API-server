@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "11e13538-e706-4b58-9f7c-33dab1ac8915",
+		"name": "Uptime monitor Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19912501",
+		"_collection_link": "https://solar-resonance-110223.postman.co/workspace/1864d6c8-b5e5-4a81-877c-402a0ba0e099/collection/19912501-11e13538-e706-4b58-9f7c-33dab1ac8915?action=share&creator=19912501&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"markamgad5@gmail.com\",\r\n    \"password\" : \"1234\",\r\n    \"phone\" : \"01289928409\",\r\n    \"name\" : \"Mark Amgad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4040/users/email/code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"users",
+								"email",
+								"code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"markamgad5@gmail.com\",\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "checks",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"markamgad5@gmail.com\",\r\n    \"urlName\" : \"My server\",\r\n    \"url\" : \"localhost:8080/test\",\r\n    \"protocol\" : \"http\",\r\n    \"ignoreSSLFlag\" : true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/checks/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"checks",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTM2ODQzN30.W7sjpMRnFx5Hfw2Pif9jatg7DuOR3n0beDRnebf4AIk",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/checks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"checks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by email",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4040/checks/markamgad5@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"checks",
+								"markamgad5@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"checkId\": \"64718e0302309d6b17050684\",\r\n    \"urlName\" : \"FaceBook\",\r\n    \"url\" : \"www.facebook.com\",\r\n    \"protocol\" : \"HTTP\",\r\n    \"ignoreSSLFlag\" : true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/checks/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"checks",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4040/checks/delete/64718e0302309d6b17050684",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"checks",
+								"delete",
+								"64718e0302309d6b17050684"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"checkId\" : \"6475fc6954ffdf2e94c2f269\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/reports/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"reports",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by check id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4040/reports/6473512d45386cbd896e278c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"reports",
+								"6473512d45386cbd896e278c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTQ1Mzg1M30.yAV4dCaV75g-RSQWb3xnYVIbbmYhrgeo1LnDnn48Scg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4040/reports/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"reports",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
