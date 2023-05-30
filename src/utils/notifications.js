@@ -7,6 +7,7 @@ notifications.sendEmail = async(email , subject , htmlContent)=>{
     try
     {
         const nodemailer = require("nodemailer");
+        // most of these data must not be hardcode,some of them must be in .env file
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465,
@@ -18,9 +19,9 @@ notifications.sendEmail = async(email , subject , htmlContent)=>{
           });
         let info = await transporter.sendMail({
         from: 'Observer app', // sender address
-        to: email, // list of receivers
-        subject: subject, // Subject line
-        text: "", // plain text body
+        to: email, // reciever
+        subject: subject, 
+        text: "", 
         html: htmlContent // html body
         });
 

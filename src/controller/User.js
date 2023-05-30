@@ -96,6 +96,7 @@ userController.login = async(req,res)=>{
     }
 }
 
+// this is endpoint is just used while testing to delete the user after creating it.
 userController.remove = async(req,res)=>{
     try
     {

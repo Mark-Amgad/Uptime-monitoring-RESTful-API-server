@@ -3,24 +3,34 @@ const CheckModel = require("./../models/Check");
 const mongoose = require("mongoose");
 
 let reportController = {};
-
+// this function saved the reprot after asking the next function to create it.
 reportController.addReport = async(req,res)=>{
     try
     {
-        let {email,checkId} = req.body;
+        let {checkId} = req.body;
         let report = await reportController.createReport(checkId);
-        res.status(200).json({"report":report,"messgae":"Saved"});
+        if(!report)
+        {
+            return res.status(404).json({"messgae":"check Id doesn't exist, try to get one"});
+        }
+        return res.status(200).json({"report":report,"messgae":"Saved"});
         
 
     }
     catch(err)
     {
-        res.status(404).json({"messgae":"Error"});
+        return res.status(404).json({"messgae":"Error"});
     }
 }
 
+
+// this function creates the report only without saving it.
 reportController.createReport = async(checkId) =>{
     let check = await CheckModel.findById(checkId);
+    if(!check)
+    {
+        return null;
+    }
     try
     {
         const LogModel = require("./../models/Log");
@@ -76,7 +86,7 @@ reportController.createReport = async(checkId) =>{
     }
     catch(err)
     {
-        console.log(err);
+        //console.log(err);
     }
     
     

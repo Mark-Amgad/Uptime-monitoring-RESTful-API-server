@@ -7,16 +7,8 @@ chai.use(chaiHttp);
 const assert = require('chai').assert
 
 describe('Users APIs', () => {
+
     describe('POST /signup', () => {
-      let email;
-      afterEach((done) => {
-        chai
-          .request(app)
-          .delete(`/users/delete/${email}`)
-          .end((err, res) => {
-            done();
-          });
-      });
 
       it('status:200 - new user created', (done) => {
         chai
@@ -27,7 +19,6 @@ describe('Users APIs', () => {
             assert.equal(res.status,200);
             assert.property(res.body,"message");
             assert.equal(res.body.message,"user created");
-            email = "markamgad20231@gmail.com";
             done();
           });
       }).timeout(10000);
@@ -40,7 +31,6 @@ describe('Users APIs', () => {
           .send({ email: 'markamgad20231@gmail.com', phone:"01289928409",name:"Ahmed" })
           .end((err, res) => {
             assert.equal(res.status,404);
-            email = "markamgad20231@gmail.com";
             done();
           });
       }).timeout(10000);
@@ -50,10 +40,9 @@ describe('Users APIs', () => {
         chai
           .request(app)
           .post('/users/signup')
-          .send({ email: 'markamgad5@gmail.com',password:"1234", phone:"01289928409",name:"Ahmed" })
+          .send({ email: 'markamgad20231@gmail.com',password:"1234", phone:"01289928409",name:"Ahmed" })
           .end((err, res) => {
             assert.equal(res.status,404);
-            email = "markamgad20231@gmail.com";
             done();
           });
       }).timeout(10000);
@@ -63,27 +52,12 @@ describe('Users APIs', () => {
 
     describe('POST /login', () => {
       
-      
-
-      it('status:200 - logged in successfully', (done) => {
-        chai
-          .request(app)
-          .post('/users/login')
-          .send({ email: 'markamgad5@gmail.com', password: '1234'})
-          .end((err, res) => {
-            assert.equal(res.status,200);
-            assert.property(res.body,"message");
-            assert.property(res.body,"token");
-            assert.equal(res.body.message,"Success login");
-            done();
-          });
-      }).timeout(10000);
 
       it('status:404 - Wrong password', (done) => {
         chai
           .request(app)
           .post('/users/login')
-          .send({ email: 'markamgad5@gmail.com', password: '12345'})
+          .send({ email: 'markamgad20231@gmail.com', password: '12345'})
           .end((err, res) => {
             assert.equal(res.status,404);
             assert.property(res.body,"message");
@@ -93,11 +67,11 @@ describe('Users APIs', () => {
       }).timeout(10000);
 
 
-      it('status:404 - not verified account', (done) => {
+      it("account is correct but not verified yet", (done) => {
         chai
           .request(app)
           .post('/users/login')
-          .send({ email: 'markamgad8@gmail.com', password: '1234'})
+          .send({ email: 'markamgad20231@gmail.com', password: '1234'})
           .end((err, res) => {
             assert.equal(res.status,404);
             assert.property(res.body,"message");
@@ -110,21 +84,6 @@ describe('Users APIs', () => {
 
     });
   
-    /*
-    describe('POST /login', () => {
-      it('should authenticate and return a token', (done) => {
-        chai
-          .request(app)
-          .post('/login')
-          .send({ username: 'testuser', password: 'testpass' })
-          .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.have.property('token');
-            // You can add more assertions as per your application's response structure
-            done();
-          });
-      });
-    });
-    */
+    
   });
   

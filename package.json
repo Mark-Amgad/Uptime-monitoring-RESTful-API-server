@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "set NODE_ENV=dev&& nodemon src/server.js",
-    "start_prod" : "set NODE_ENV=prod&& nodemon src/server.js",
-    "test": "set NODE_ENV=testing&& mocha src/test/UserTest.js --exit&& mocha src/test/CheckTest.js --exit"
+    "test": "set NODE_ENV=testing&& mocha src/test/UserTest.js --exit --bail&& mocha src/test/CheckTest.js --exit --bail"
   },
   "repository": {
     "type": "git",

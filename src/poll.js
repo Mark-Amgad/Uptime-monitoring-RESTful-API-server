@@ -6,6 +6,14 @@ const logController = require("./controller/Log");
 
 let poll = {};
 
+/*
+requestDetails :method and url
+checkDetails : some info like email
+prevState:
+the previous state of this URL in order to 
+send notification in case of change of state
+
+*/
 poll.pollRequest = (requestDetails,checkDetails,prevState)=> {
     const startTime = performance.now();
     axios(requestDetails)
@@ -67,6 +75,8 @@ poll.pollRequest = (requestDetails,checkDetails,prevState)=> {
         });
 }
 
+
+//start to record logs and check on every URL
 poll.manager = async ()=>{
     // get all urls
     let allChecks = await poll.getAllChecks();

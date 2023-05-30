@@ -46,6 +46,7 @@ describe('Check APIs', () => {
         chai
           .request(app)
           .delete(`/checks/delete/${addedCheckId}`)
+          .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTM2ODQzN30.W7sjpMRnFx5Hfw2Pif9jatg7DuOR3n0beDRnebf4AIk')
           .end((err, res) => {
             done();
           });
@@ -58,7 +59,7 @@ describe('Check APIs', () => {
           .post('/checks/add')
           .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTM2ODQzN30.W7sjpMRnFx5Hfw2Pif9jatg7DuOR3n0beDRnebf4AIk')
           .send({
-            "email": "markamgad5@gmail.com",
+            "email": "markamgad20231@gmail.com",
             "urlName" : "My server",
             "url" : "localhost:8080/test",
             "protocol" : "http",
@@ -80,7 +81,7 @@ describe('Check APIs', () => {
           .post('/checks/add')
           .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTM2ODQzN30.W7sjpMRnFx5Hfw2Pif9jatg7DuOR3n0beDRnebf4AIk')
           .send({
-            "email": "markamgad5@gmail.com",
+            "email": "markamgad20231@gmail.com",
             "url" : "localhost:8080/test",
             "protocol" : "http",
             "ignoreSSLFlag" : true
@@ -97,7 +98,7 @@ describe('Check APIs', () => {
           .request(app)
           .post('/checks/add')
           .send({
-            "email": "markamgad5@gmail.com",
+            "email": "markamgad20231@gmail.com",
             "url" : "localhost:8080/test",
             "protocol" : "http",
             "ignoreSSLFlag" : true
@@ -113,9 +114,26 @@ describe('Check APIs', () => {
 
 
     describe("Get /getByEmail",()=>{
+      let email = "markamgad20231@gmail.com";
+      let deleteEmailFlag = false;
+      afterEach((done) => {
+        if(deleteEmailFlag)
+        {
+          chai
+          .request(app)
+          .delete(`/users/delete/${email}`)
+          .end((err, res) => {
+            done();
+          });
+        }
+        done();  
+      });
+
+
+
       it("status 200 and checks available",(done)=>{
         chai.request(app)
-        .get("/checks/markamgad5@gmail.com")
+        .get("/checks/markamgad20231@gmail.com")
         .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmthbWdhZDVAZ21haWwuY29tIiwicGhvbmUiOiIwMTI4OTkyODQwOSIsImlhdCI6MTY4NTM2ODQzN30.W7sjpMRnFx5Hfw2Pif9jatg7DuOR3n0beDRnebf4AIk')
         .end((err,res)=>{
           assert.equal(res.status,200);
@@ -139,11 +157,12 @@ describe('Check APIs', () => {
       it('status:404 && Not Authenticated User', (done) => {
         chai
           .request(app)
-          .get('/checks/markamgad5@gmail.com')
+          .get('/checks/markamgad20231@gmail.com')
           .end((err, res) => {
             assert.equal(res.status,404);
             assert.property(res.body,"message");
             assert.equal(res.body.message,"Not Authenticated User");
+            deleteEmailFlag = true;
             done();
           });
       }).timeout(5000);

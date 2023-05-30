@@ -1,0 +1,9 @@
+change the file name to : ".env"
+
+SALT_ROUND = 10
+JWT_KEY = "KEY"
+
+MONGODB = "mongodb+srv://mark:1234@mycluster.s9dhhpp.mongodb.net/Bosta?retryWrites=true&w=majority"
+
+EMAIL_USER = "YOUR SENDER EMAIL"
+EMAIL_PASS =  "YOUR SENDER EMAIL CODE"
