@@ -12,12 +12,13 @@ Bosta | Backend | Assessment
 ## setup
 1. run `npm install`
 2. change the name of ".envExample" to ".env"
-3. after the previous step, change the variables to be suitable with your machine.
+3. after the previous step, change the variables to be suitable with your machine and add your credentials.
+(It's recommended to keep the JWT_KEY = "KEY", this will help while testing)
 
 
 ## Useful scripts
 1. run `npm run start` : to run in the dev mode
-2. run `npm run test` to run the unit tests
+2. run `npm run test` to run the unit tests.
 
 ## Useful tips:
 1. you can test the app using the provided postman document.
@@ -25,6 +26,5 @@ Bosta | Backend | Assessment
 
 
 ### NOTES and Assumptions
-1. NOT all test cases are covered in the unit tests
-2. .env must be in the .ignore file, however I added some of my variables in the ".envExample", since It's an assesment and for easier testing.
-3. I assumed that NOSQL database would be suitable to this project since we are going to handle large data like Logs and reports, and there are a lot of operations in real-time.
+1. Some of the test cases and functionalities are NOT covered in the unit tests.
+2. I assumed that NOSQL database would be suitable to this project since we are going to handle large data like Logs and reports, and there are a lot of operations in real-time.
