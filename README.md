@@ -18,11 +18,11 @@ Bosta | Backend | Assessment
 
 ## Useful scripts
 1. run `npm run start` : to run in the dev mode
-2. run `npm run test` to run the unit tests.
+2. run `npm run test` : to run the unit tests.
 
 ## Useful tips:
 1. you can test the app using the provided postman document.
-2. you can enable authorization button in the headers to test the api.
+2. you can enable the authorization button in the headers to test the api.
 
 
 ### NOTES and Assumptions
