@@ -37,6 +37,6 @@ app.use(userRoute);
 app.use(reportRoute);
 
 const poll = require("./poll");
-poll.manager(); // to start to take logs and check on every URL
+poll.manager(); // to start to record logs and check on every URL
 
 module.exports = app;
