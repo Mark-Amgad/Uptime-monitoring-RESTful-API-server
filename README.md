@@ -1,5 +1,4 @@
 # Uptime-monitoring-RESTful-API-server
-Bosta | Backend | Assessment
 
 ## Used technologies
 * Nodejs
@@ -27,4 +26,4 @@ Bosta | Backend | Assessment
 
 ### NOTES and Assumptions
 1. Some of the test cases and functionalities are NOT covered in the unit tests.
-2. I assumed that NOSQL database would be suitable to this project since we are going to handle large data like Logs and reports, and there are a lot of operations in real-time.
+2. I used NOSQL database to this project since we are going to handle large data like Logs and reports, and there are a lot of operations in real-time.
