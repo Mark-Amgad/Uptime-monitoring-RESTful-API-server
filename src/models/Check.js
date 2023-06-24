@@ -9,7 +9,7 @@ const checkSchema = new mongoose.Schema({
   protocol: {type: String,required: true, default:"http"},
   method : {type:String,required:true,default:"GET"},
   time_out: {type: Number,required: true,default:5000},
-  interval: {type: Number,required: true,default:10000},
+  interval: {type: Number,required: true,default:60000},
   ignoreSSL_flag: {type: Boolean,default: false}
 
 });
